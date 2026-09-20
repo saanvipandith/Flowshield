@@ -1,0 +1,28 @@
+{
+  "libraries": [
+    {
+      "name": "Adafruit GFX Library"
+    },
+    {
+      "name": "Adafruit SSD1306"
+    },
+    {
+      "name": "DHT sensor library"
+    },
+    {
+      "name": "Adafruit Unified Sensor"
+    },
+    {
+      "name": "Adafruit BusIO"
+    },
+    {
+      "name": "ESP32Servo"
+    },
+    {
+      "name": "TinyGPSPlus"
+    },
+    {
+      "name": "PubSubClient"
+    }
+  ]
+}

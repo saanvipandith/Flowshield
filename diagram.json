@@ -1,0 +1,609 @@
+{
+  "version": 1,
+  "author": "Velxio",
+  "editor": "wokwi",
+  "parts": [
+    {
+      "type": "board-velxio-esp32",
+      "id": "esp32",
+      "top": 0,
+      "left": 0,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-breadboard",
+      "id": "breadboard_1789827233256_4senu14t8",
+      "top": 53,
+      "left": 148,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-hc-sr04",
+      "id": "hc_sr04_1789828118405_nl4wjnx17",
+      "top": -147,
+      "left": -34,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-resistor-1k",
+      "id": "resistor_1k_1789828302817_2ogahl7iq",
+      "top": 133,
+      "left": 108,
+      "rotate": 90,
+      "attrs": {
+        "value": "1000"
+      }
+    },
+    {
+      "type": "wokwi-hc-sr04",
+      "id": "hc_sr04_1789828375998_pv8x1flfy",
+      "top": -143,
+      "left": 171,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-resistor-1k",
+      "id": "resistor_1k_1789828462227_qi05g6m4i",
+      "top": 133,
+      "left": 118,
+      "rotate": 90,
+      "attrs": {
+        "value": "1000"
+      }
+    },
+    {
+      "type": "wokwi-potentiometer",
+      "id": "potentiometer_1789828660235_pegdye1lo",
+      "top": -137,
+      "left": 359,
+      "attrs": {
+        "min": 0,
+        "max": 1023,
+        "value": 523,
+        "step": 1,
+        "startDegree": -135,
+        "endDegree": 135
+      }
+    },
+    {
+      "type": "wokwi-potentiometer",
+      "id": "potentiometer_1789828834803_n2db8tm4t",
+      "top": -140,
+      "left": 441,
+      "attrs": {
+        "min": 0,
+        "max": 1023,
+        "value": 1023,
+        "step": 1,
+        "startDegree": -135,
+        "endDegree": 135
+      }
+    },
+    {
+      "type": "wokwi-dht22",
+      "id": "dht22_1789829117403_34ws14z22",
+      "top": 9,
+      "left": -92,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-ssd1306-i2c-4pin",
+      "id": "ssd1306_i2c_4pin_1789829357568_g0ne5bxo8",
+      "top": 280,
+      "left": 403,
+      "attrs": {
+        "i2cAddress": "0x3c"
+      }
+    },
+    {
+      "type": "wokwi-gps-neo6m",
+      "id": "gps_neo6m_1789829448904_rkr8sax0j",
+      "top": -154,
+      "left": 539,
+      "attrs": {
+        "lat": 40.4168,
+        "lng": -3.7038,
+        "altitude": 667,
+        "speed": 0
+      }
+    },
+    {
+      "type": "wokwi-rgb-led",
+      "id": "rgb_led_1789829757575_ht3x4gkqh",
+      "top": -42,
+      "left": 597,
+      "attrs": {
+        "ledRed": 0,
+        "ledGreen": 0,
+        "ledBlue": 0
+      }
+    },
+    {
+      "type": "wokwi-resistor-220",
+      "id": "resistor_220_1789829825453_ry0igx6e1",
+      "top": 138,
+      "left": 237,
+      "rotate": 90,
+      "attrs": {
+        "value": "220"
+      }
+    },
+    {
+      "type": "wokwi-resistor-220",
+      "id": "resistor_220_1789829889153_pylnpffet",
+      "top": 138,
+      "left": 257,
+      "rotate": 90,
+      "attrs": {
+        "value": "220"
+      }
+    },
+    {
+      "type": "wokwi-resistor-220",
+      "id": "resistor_220_1789829938373_qhftt8pvl",
+      "top": 138,
+      "left": 276,
+      "rotate": 90,
+      "attrs": {
+        "value": "220"
+      }
+    },
+    {
+      "type": "wokwi-buzzer",
+      "id": "buzzer_1789830119790_ar4b2n1vi",
+      "top": -171,
+      "left": 707,
+      "attrs": {
+        "hasSignal": false
+      }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "resistor_1789830559431_m8gmm15w2",
+      "top": 173,
+      "left": 317,
+      "rotate": 90,
+      "attrs": {
+        "value": "2000"
+      }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "resistor_1789830730380_hkp3kujfk",
+      "top": 173,
+      "left": 336,
+      "rotate": 90,
+      "attrs": {
+        "value": "1000"
+      }
+    },
+    {
+      "type": "wokwi-servo",
+      "id": "servo_1789830264325_y88d6i3ht",
+      "top": -69,
+      "left": 792,
+      "attrs": {
+        "angle": 0,
+        "horn": "single",
+        "hornColor": "#ccc"
+      }
+    },
+    {
+      "type": "wokwi-grove-gas-mq2",
+      "id": "grove_gas_mq2_1789829250315_vj9fp7yy6",
+      "top": 274,
+      "left": 223,
+      "attrs": {
+        "ppm": 400
+      }
+    }
+  ],
+  "connections": [
+    [
+      "breadboard_1789827233256_4senu14t8:bp.1",
+      "esp32:VIN",
+      "#cc0000",
+      []
+    ],
+    [
+      "esp32:GND",
+      "breadboard_1789827233256_4senu14t8:bn.1",
+      "black",
+      []
+    ],
+    [
+      "hc_sr04_1789828118405_nl4wjnx17:VCC",
+      "breadboard_1789827233256_4senu14t8:bp.3",
+      "#cc0000",
+      []
+    ],
+    [
+      "hc_sr04_1789828118405_nl4wjnx17:GND",
+      "breadboard_1789827233256_4senu14t8:bn.5",
+      "black",
+      []
+    ],
+    [
+      "hc_sr04_1789828118405_nl4wjnx17:TRIG",
+      "esp32:5",
+      "#22c55e",
+      []
+    ],
+    [
+      "hc_sr04_1789828118405_nl4wjnx17:ECHO",
+      "breadboard_1789827233256_4senu14t8:1t.a",
+      "#22c55e",
+      []
+    ],
+    [
+      "breadboard_1789827233256_4senu14t8:1b.j",
+      "esp32:18",
+      "#FF00FF",
+      []
+    ],
+    [
+      "hc_sr04_1789828375998_pv8x1flfy:VCC",
+      "breadboard_1789827233256_4senu14t8:bp.4",
+      "#cc0000",
+      []
+    ],
+    [
+      "breadboard_1789827233256_4senu14t8:bn.4",
+      "hc_sr04_1789828375998_pv8x1flfy:GND",
+      "black",
+      []
+    ],
+    [
+      "hc_sr04_1789828375998_pv8x1flfy:TRIG",
+      "esp32:19",
+      "#22c55e",
+      []
+    ],
+    [
+      "hc_sr04_1789828375998_pv8x1flfy:ECHO",
+      "breadboard_1789827233256_4senu14t8:2t.a",
+      "#22c55e",
+      []
+    ],
+    [
+      "esp32:32",
+      "breadboard_1789827233256_4senu14t8:2b.j",
+      "#22c55e",
+      []
+    ],
+    [
+      "esp32:3V3",
+      "breadboard_1789827233256_4senu14t8:tn.1",
+      "#cc0000",
+      []
+    ],
+    [
+      "esp32:GND2",
+      "breadboard_1789827233256_4senu14t8:tp.1",
+      "black",
+      []
+    ],
+    [
+      "potentiometer_1789828660235_pegdye1lo:VCC",
+      "breadboard_1789827233256_4senu14t8:tn.5",
+      "#cc0000",
+      []
+    ],
+    [
+      "potentiometer_1789828660235_pegdye1lo:SIG",
+      "esp32:34",
+      "#22c55e",
+      []
+    ],
+    [
+      "potentiometer_1789828660235_pegdye1lo:GND",
+      "breadboard_1789827233256_4senu14t8:tp.2",
+      "black",
+      []
+    ],
+    [
+      "potentiometer_1789828834803_n2db8tm4t:GND",
+      "breadboard_1789827233256_4senu14t8:tp.21",
+      "black",
+      []
+    ],
+    [
+      "potentiometer_1789828834803_n2db8tm4t:VCC",
+      "breadboard_1789827233256_4senu14t8:tn.21",
+      "#cc0000",
+      []
+    ],
+    [
+      "potentiometer_1789828834803_n2db8tm4t:SIG",
+      "esp32:35",
+      "#22c55e",
+      []
+    ],
+    [
+      "dht22_1789829117403_34ws14z22:VCC",
+      "breadboard_1789827233256_4senu14t8:tn.8",
+      "#cc0000",
+      []
+    ],
+    [
+      "dht22_1789829117403_34ws14z22:GND",
+      "breadboard_1789827233256_4senu14t8:bn.2",
+      "black",
+      []
+    ],
+    [
+      "ssd1306_i2c_4pin_1789829357568_g0ne5bxo8:VCC",
+      "breadboard_1789827233256_4senu14t8:tn.29",
+      "#cc0000",
+      []
+    ],
+    [
+      "ssd1306_i2c_4pin_1789829357568_g0ne5bxo8:GND",
+      "breadboard_1789827233256_4senu14t8:bn.22",
+      "black",
+      []
+    ],
+    [
+      "ssd1306_i2c_4pin_1789829357568_g0ne5bxo8:SCL",
+      "esp32:22",
+      "#22c55e",
+      []
+    ],
+    [
+      "esp32:21",
+      "ssd1306_i2c_4pin_1789829357568_g0ne5bxo8:SDA",
+      "#22c55e",
+      []
+    ],
+    [
+      "gps_neo6m_1789829448904_rkr8sax0j:VCC",
+      "breadboard_1789827233256_4senu14t8:tn.16",
+      "#cc0000",
+      []
+    ],
+    [
+      "gps_neo6m_1789829448904_rkr8sax0j:GND",
+      "breadboard_1789827233256_4senu14t8:tp.30",
+      "black",
+      []
+    ],
+    [
+      "gps_neo6m_1789829448904_rkr8sax0j:RX",
+      "esp32:17",
+      "#22c55e",
+      []
+    ],
+    [
+      "gps_neo6m_1789829448904_rkr8sax0j:TX",
+      "esp32:16",
+      "#22c55e",
+      []
+    ],
+    [
+      "rgb_led_1789829757575_ht3x4gkqh:COM",
+      "breadboard_1789827233256_4senu14t8:tp.35",
+      "#22c55e",
+      []
+    ],
+    [
+      "rgb_led_1789829757575_ht3x4gkqh:R",
+      "breadboard_1789827233256_4senu14t8:15t.a",
+      "#22c55e",
+      []
+    ],
+    [
+      "breadboard_1789827233256_4senu14t8:15b.j",
+      "esp32:25",
+      "#8B4513",
+      []
+    ],
+    [
+      "rgb_led_1789829757575_ht3x4gkqh:G",
+      "breadboard_1789827233256_4senu14t8:17t.a",
+      "#22c55e",
+      []
+    ],
+    [
+      "breadboard_1789827233256_4senu14t8:17b.j",
+      "esp32:26",
+      "#8B00FF",
+      []
+    ],
+    [
+      "rgb_led_1789829757575_ht3x4gkqh:B",
+      "breadboard_1789827233256_4senu14t8:19t.a",
+      "#22c55e",
+      []
+    ],
+    [
+      "breadboard_1789827233256_4senu14t8:19b.j",
+      "esp32:27",
+      "#22c55e",
+      []
+    ],
+    [
+      "buzzer_1789830119790_ar4b2n1vi:2",
+      "esp32:23",
+      "#22c55e",
+      []
+    ],
+    [
+      "buzzer_1789830119790_ar4b2n1vi:1",
+      "breadboard_1789827233256_4senu14t8:tp.41",
+      "#22c55e",
+      []
+    ],
+    [
+      "dht22_1789829117403_34ws14z22:SDA",
+      "esp32:4",
+      "#22c55e",
+      []
+    ],
+    [
+      "esp32:VP",
+      "breadboard_1789827233256_4senu14t8:26t.a",
+      "#22c55e",
+      []
+    ],
+    [
+      "breadboard_1789827233256_4senu14t8:26t.c",
+      "breadboard_1789827233256_4senu14t8:24t.c",
+      "#0000cc",
+      []
+    ],
+    [
+      "breadboard_1789827233256_4senu14t8:bn.27",
+      "breadboard_1789827233256_4senu14t8:26t.d",
+      "black",
+      []
+    ],
+    [
+      "servo_1789830264325_y88d6i3ht:PWM",
+      "esp32:13",
+      "#22c55e",
+      []
+    ],
+    [
+      "servo_1789830264325_y88d6i3ht:V+",
+      "breadboard_1789827233256_4senu14t8:bp.33",
+      "#cc0000",
+      []
+    ],
+    [
+      "servo_1789830264325_y88d6i3ht:GND",
+      "breadboard_1789827233256_4senu14t8:bn.32",
+      "black",
+      []
+    ],
+    [
+      "grove_gas_mq2_1789829250315_vj9fp7yy6:SIG",
+      "breadboard_1789827233256_4senu14t8:24b.j",
+      "#22c55e",
+      []
+    ],
+    [
+      "grove_gas_mq2_1789829250315_vj9fp7yy6:VCC",
+      "breadboard_1789827233256_4senu14t8:bp.6",
+      "#cc0000",
+      []
+    ],
+    [
+      "grove_gas_mq2_1789829250315_vj9fp7yy6:GND",
+      "breadboard_1789827233256_4senu14t8:bn.7",
+      "black",
+      []
+    ],
+    [
+      "resistor_1k_1789828302817_2ogahl7iq:1",
+      "breadboard_1789827233256_4senu14t8:1t.b",
+      "",
+      [
+        "$bb"
+      ]
+    ],
+    [
+      "resistor_1k_1789828302817_2ogahl7iq:2",
+      "breadboard_1789827233256_4senu14t8:1b.f",
+      "",
+      [
+        "$bb"
+      ]
+    ],
+    [
+      "resistor_1k_1789828462227_qi05g6m4i:1",
+      "breadboard_1789827233256_4senu14t8:2t.b",
+      "",
+      [
+        "$bb"
+      ]
+    ],
+    [
+      "resistor_1k_1789828462227_qi05g6m4i:2",
+      "breadboard_1789827233256_4senu14t8:2b.f",
+      "",
+      [
+        "$bb"
+      ]
+    ],
+    [
+      "resistor_220_1789829825453_ry0igx6e1:1",
+      "breadboard_1789827233256_4senu14t8:15t.b",
+      "",
+      [
+        "$bb"
+      ]
+    ],
+    [
+      "resistor_220_1789829825453_ry0igx6e1:2",
+      "breadboard_1789827233256_4senu14t8:15b.f",
+      "",
+      [
+        "$bb"
+      ]
+    ],
+    [
+      "resistor_220_1789829889153_pylnpffet:1",
+      "breadboard_1789827233256_4senu14t8:17t.b",
+      "",
+      [
+        "$bb"
+      ]
+    ],
+    [
+      "resistor_220_1789829889153_pylnpffet:2",
+      "breadboard_1789827233256_4senu14t8:17b.f",
+      "",
+      [
+        "$bb"
+      ]
+    ],
+    [
+      "resistor_220_1789829938373_qhftt8pvl:1",
+      "breadboard_1789827233256_4senu14t8:19t.b",
+      "",
+      [
+        "$bb"
+      ]
+    ],
+    [
+      "resistor_220_1789829938373_qhftt8pvl:2",
+      "breadboard_1789827233256_4senu14t8:19b.f",
+      "",
+      [
+        "$bb"
+      ]
+    ],
+    [
+      "resistor_1789830559431_m8gmm15w2:1",
+      "breadboard_1789827233256_4senu14t8:24t.e",
+      "",
+      [
+        "$bb"
+      ]
+    ],
+    [
+      "resistor_1789830559431_m8gmm15w2:2",
+      "breadboard_1789827233256_4senu14t8:24b.i",
+      "",
+      [
+        "$bb"
+      ]
+    ],
+    [
+      "resistor_1789830730380_hkp3kujfk:1",
+      "breadboard_1789827233256_4senu14t8:26t.e",
+      "",
+      [
+        "$bb"
+      ]
+    ],
+    [
+      "resistor_1789830730380_hkp3kujfk:2",
+      "breadboard_1789827233256_4senu14t8:26b.i",
+      "",
+      [
+        "$bb"
+      ]
+    ]
+  ]
+}

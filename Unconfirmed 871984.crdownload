@@ -1,0 +1,11 @@
+const http=require('http');const fs=require('fs');const path=require('path');const PORT=3000;let selection={lat:12.9716,lng:77.5946};let reading=null;
+const mime={'.html':'text/html','.js':'text/javascript','.css':'text/css','.json':'application/json','.ico':'image/x-icon'};
+function send(res,status,type,data){res.writeHead(status,{'Content-Type':type,'Access-Control-Allow-Origin':'*','Cache-Control':'no-store'});res.end(data)}
+function body(req){return new Promise((resolve,reject)=>{let b='';req.on('data',c=>b+=c);req.on('end',()=>{try{resolve(JSON.parse(b||'{}'))}catch(e){reject(e)}})})}
+const server=http.createServer(async(req,res)=>{const u=new URL(req.url,`http://${req.headers.host}`);if(req.method==='OPTIONS'){res.writeHead(204,{'Access-Control-Allow-Origin':'*','Access-Control-Allow-Headers':'Content-Type'});return res.end()}
+ if(u.pathname==='/api/selection'&&req.method==='GET')return send(res,200,'application/json',JSON.stringify(selection));
+ if(u.pathname==='/api/selection'&&req.method==='POST'){try{const x=await body(req);if(Number.isFinite(+x.lat)&&Number.isFinite(+x.lng))selection={lat:+x.lat,lng:+x.lng}}catch(e){}return send(res,200,'application/json',JSON.stringify(selection))}
+ if(u.pathname==='/api/esp32'&&req.method==='POST'){try{const x=await body(req);reading={lat:Number(x.lat??selection.lat),lng:Number(x.lng??selection.lng),rainfall:Number(x.rainfall||0),elevation:Number(x.elevation||0),drainage:Number(x.drainage||45),ts:Date.now()};selection={lat:reading.lat,lng:reading.lng};return send(res,200,'application/json',JSON.stringify({ok:true,selection}))}catch(e){return send(res,400,'application/json',JSON.stringify({ok:false,error:'Invalid JSON'}))}}
+ if(u.pathname==='/api/state'&&req.method==='GET')return send(res,200,'application/json',JSON.stringify({selection,reading}));
+ let p=u.pathname==='/'?'/index.html':u.pathname;const file=path.join(__dirname,p);if(!file.startsWith(__dirname)||!fs.existsSync(file)||fs.statSync(file).isDirectory())return send(res,404,'text/plain','Not found');send(res,200,mime[path.extname(file)]||'application/octet-stream',fs.readFileSync(file));
+});server.listen(PORT,()=>console.log(`FlowShield running at http://localhost:${PORT}`));

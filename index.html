@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>FlowShield — Flood Early Warning Dashboard</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script src="https://unpkg.com/mqtt/dist/mqtt.min.js"></script>
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <div class="brand"><span class="brand-mark">◒</span><div><h1>FLOW<span>SHIELD</span></h1><p>Predict the flood. Protect the future.</p></div></div>
+      <div class="header-status"><span id="connectionDot" class="dot online"></span><span id="connectionText">LIVE MAP • READY</span><span class="clock" id="clock"></span></div>
+    </header>
+
+    <main class="dashboard">
+      <aside class="sidebar">
+        <section class="panel sensor-panel">
+          <div class="section-title"><span>ESP32 SENSOR INPUT</span><span class="pill" id="sensorPill">DEMO</span></div>
+          <div class="sensor-grid">
+            <div><small>Latitude</small><strong id="sensorLat">—</strong></div>
+            <div><small>Longitude</small><strong id="sensorLng">—</strong></div>
+            <div><small>Rainfall / inflow</small><strong id="sensorRain">—</strong><em>mm/h</em></div>
+            <div><small>Terrain</small><strong id="sensorTerrain">—</strong><em>m</em></div>
+            <div><small>Inflow ADC</small><strong id="sensorInflow">—</strong><em>0–4095</em></div>
+            <div><small>Drainage ADC</small><strong id="sensorDrain">—</strong><em>0–4095</em></div>
+          </div>
+          <p class="hint">Velxio controls: <b>Pot 1 / GPIO34 = rainfall-inflow</b> and <b>Pot 2 / GPIO35 = drainage capacity</b>. Change a pot while the ESP32 is running; the live values below and the flood model update automatically.</p>
+          <button class="ghost-btn" id="demoEsp">Simulate ESP32 reading</button>
+          <div style="margin-top:10px;font-size:12px;opacity:.85">
+            MQTT: <strong id="mqttState">CONNECTING…</strong><br>
+            Map clicks are sent to Velxio Node-1.
+          </div>
+        </section>
+
+        <section class="panel">
+          <div class="section-title">SIMULATION CONTROLS</div>
+          <label>Rainfall intensity <output id="rainOut">80</output> mm/h<input id="rainfall" type="range" min="0" max="250" value="80"></label>
+          <label>Drainage capacity <output id="drainOut">45</output> mm/h<input id="drainage" type="range" min="5" max="120" value="45"></label>
+          <label>Initial water level <output id="waterOut">20</output> cm<input id="water" type="range" min="0" max="100" value="20"></label>
+          <label>Terrain / elevation <output id="terrainOut">620</output> m<input id="terrain" type="range" min="0" max="1500" value="620"></label>
+          <label>Population density <output id="popOut">12,000</output> / km²<input id="pop" type="range" min="500" max="30000" step="500" value="12000"></label>
+          <div class="scenario-row"><button data-scenario="light">Light</button><button data-scenario="monsoon" class="active">Monsoon</button><button data-scenario="extreme">Extreme</button></div>
+          <div class="action-row"><button class="primary-btn" id="simulate">▶ Run simulation</button><button class="icon-btn" id="reset" title="Reset">↺</button></div>
+        </section>
+
+        <section class="panel ai-panel">
+          <div class="section-title">AI CITIZEN ALERT</div>
+          <div class="alert-preview" id="alertPreview">Select a point and run a simulation to generate a citizen warning.</div>
+          <button class="primary-btn" id="generateMsg">✦ Generate message</button>
+          <button class="ghost-btn" id="copyMsg">Copy message</button>
+        </section>
+      </aside>
+
+      <section class="main-area">
+        <div class="map-card panel">
+          <div id="map"></div>
+          <div class="map-overlay top-left"><span class="live-dot"></span> LIVE FLOOD MODEL <span class="divider"></span><span id="selectedLocation">No sensor point selected</span></div>
+          <div class="legend map-overlay bottom-left"><b>RISK</b><span><i class="safe"></i>Safe</span><span><i class="warning"></i>Warning</span><span><i class="critical"></i>Critical</span></div>
+          <div class="map-overlay bottom-right"><span>Flood time</span><strong id="timeLabel">0 min</strong><input id="timeSlider" type="range" min="0" max="120" value="0"><span id="timeMax">120 min</span></div>
+        </div>
+
+        <div class="stats-grid">
+          <div class="stat panel"><span>MAX WATER LEVEL</span><strong id="maxWater">0 cm</strong><small id="maxWaterSub">Across modeled regions</small></div>
+          <div class="stat panel"><span>CRITICAL REGIONS</span><strong id="criticalCount">0</strong><small id="criticalSub">At selected time</small></div>
+          <div class="stat panel"><span>AFFECTED POPULATION</span><strong id="affectedPop">0</strong><small id="affectedSub">Estimated people</small></div>
+          <div class="stat panel"><span>TIME TO CRITICAL</span><strong id="criticalTime">—</strong><small id="criticalTimeSub">Earliest modeled region</small></div>
+        </div>
+
+        <div class="lower-grid">
+          <section class="panel chart-panel"><div class="section-title">WATER LEVEL OVER TIME <span id="chartLocation">Selected region</span></div><canvas id="waterChart" height="190"></canvas></section>
+          <section class="panel route-panel"><div class="section-title">SAFE EVACUATION</div><div id="routeEmpty" class="empty">Run a simulation to calculate the nearest safe region and route.</div><div id="routeInfo" class="hidden"><div class="route-kpis"><div><small>Nearest safe region</small><b id="safeRegion">—</b></div><div><small>Distance</small><b id="routeDistance">—</b></div><div><small>Travel estimate</small><b id="routeTime">—</b></div></div><div class="route-steps" id="routeSteps"></div></div></section>
+        </div>
+
+        <div class="lower-grid second-row">
+          <section class="panel vulnerable-panel"><div class="section-title">VULNERABLE REGIONS <span id="regionCount">0 regions</span></div><div id="regionTable" class="region-table"></div></section>
+          <section class="panel scenario-panel"><div class="section-title">SCENARIO COMPARISON</div><div class="scenario-bars" id="scenarioBars"></div></section>
+        </div>
+      </section>
+    </main>
+    <footer>FlowShield prototype • Simulation values are model outputs for demonstration, not emergency guidance.</footer>
+  </div>
+  <script src="map-core.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,9 @@
+# Velxio / Arduino libraries
+Adafruit GFX Library
+TinyGPSPlus
+Adafruit SSD1306
+DHT kxn
+ESP32Servo
+Adafruit BusIO
+Adafruit Unified Sensor
+PubSubClient
